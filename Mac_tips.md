@@ -120,3 +120,15 @@ g++ `pkg-config opencv --cflags` test.cpp  -o opencv `pkg-config opencv --libs`
 import cv2
 print(cv2.__version__) % echo `3.4.2`
 ```
+
+### Another way to install OpenCV 3 for Python on Mac
+> [Reference](https://www.codingforentrepreneurs.com/blog/install-opencv-3-for-python-on-mac/)
+> Ever follow it to install, but not work. 
+
+Install OpenCV3 for Python using **Homebrew**
+
+```bash
+brew install opencv3 --with-contrib --with-python3
+# Add the cv2.*.so file to the Anaconda python site-packeges
+ln -s /usr/local/Cellar/opencv/3.4.2/lib/python3.7/site-packages/cv2.cpython-37m-darwin.so /Users/jarvis/anaconda3/lib/python3.6/site-packages/cv2.so
+```
