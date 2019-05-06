@@ -15,12 +15,17 @@ This file will record my steps of configuring my *Macbook Pro*
 > This is a picture
 <!--![pic1](/Users/jarvis/Research/picture/WechatIMG7.jpeg)-->
 
-$$x = y$$
-
+$x = y​$
+$$
+x=y
+$$
 <!--This is a table-->
+
 |feeeeee  | ewww |ef|
-|---------|-------|----|
-efe.   |fe|eef|
+|--|--|--|
+|efe|fe|eef|
+
+
 
 
 First Header  | Second Header
