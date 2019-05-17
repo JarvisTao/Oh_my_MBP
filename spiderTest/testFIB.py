@@ -20,14 +20,16 @@ class Application(Frame):
 def runFn():
     i = 1
     result = ''
-    while i < 5 and result.find('Success') == -1:
+    showText.insert(END, 'Beginning: '+'\t'+stEntry.get()+' ~ '+edEntry.get()+'\n')
+    showText.update()
+    while i < 100 and result.find('Success') == -1:
         deltaTime = stTime - dt.now()
         result = book_FIB(stEntry.get(),edEntry.get())
         showText.config(state=NORMAL)
         # showText.delete(1.0,END)
-        showText.insert(END, "Beginning: this is the {} try at {}\n".format(i,dt.now().strftime("%Y-%m-%d %H:%M")))
-        showText.insert(END, ('\t'+stEntry.get()+' ~ '+edEntry.get()+'\n'))
-        showText.insert(END, ('\tResult: '+result+'\n'))
+        showText.insert(1.0, "This is the {} try at {}\n".format(i,dt.now().strftime("%Y-%m-%d %H:%M")))
+        showText.insert(2.0, ('\tResult: '+result+'\n'))
+        showText.update()
         showText.config(state=DISABLED)
         showText.pack()
         i += 1
