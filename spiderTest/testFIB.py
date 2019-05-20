@@ -20,11 +20,27 @@ class Application(Frame):
 def runFn():
     i = 1
     result = ''
-    showText.insert(END, 'Beginning: '+'\t'+stEntry.get()+' ~ '+edEntry.get()+'\n')
+    showText.insert(1.0, 'Beginning: '+'\t'+stEntry.get()+' ~ '+edEntry.get()+'\n')
     showText.update()
-    while i < 100 and result.find('Success') == -1:
-        deltaTime = stTime - dt.now()
+    time.sleep(5)
+    stTime = dt.strptime(stEntry.get(), '%Y-%m-%d %H:%M')
+    edTime = dt.strptime(edEntry.get(), '%Y-%m-%d %H:%M')
+    deltaTime = stTime - dt.now()
+    minNum = deltaTime.seconds
+    while i >= 0 and result.find('Success') == -1:
+        if deltaTime.days > 13 and minNum%3600//60 > 4:
+            showText.delete(1.0,END)
+            showText.insert(1.0, "The left time is: {:02d}h {:02d}m {:02d}s\n".format(minNum//3600, minNum%3600//60,minNum%60))
+            showText.insert(END, "The program will run in 5 min left, now waiting~~~")
+            showText.update()
+            deltaTime = stTime - dt.now()
+            minNum = deltaTime.seconds
+            continue
+        # else:
         result = book_FIB(stEntry.get(),edEntry.get())
+        # sttemp = '2019-05-31 08:00'
+        # edtemp = '2019-05-31 12:00'
+        # result = book_FIB(sttemp,edtemp)
         showText.config(state=NORMAL)
         # showText.delete(1.0,END)
         showText.insert(1.0, "This is the {} try at {}\n".format(i,dt.now().strftime("%Y-%m-%d %H:%M")))
@@ -53,7 +69,7 @@ if __name__ == '__main__':
     e1 = StringVar()
     stEntry = Entry(f1, width = 50, textvariable = e1)
     stEntry.pack(side = LEFT)
-    e1.set("2019-05-31 8:00")
+    e1.set("2019-05-31 08:00")
     f1.pack()
 
     f2 = Frame(top)
