@@ -25,7 +25,8 @@ def runFn():
     time.sleep(5)
     stTime = dt.strptime(stEntry.get(), '%Y-%m-%d %H:%M')
     edTime = dt.strptime(edEntry.get(), '%Y-%m-%d %H:%M')
-    deltaTime = stTime - dt.now()
+    sysOpenTime = dt(stTime.year,stTime.month,stTime.day,8,0)
+    deltaTime = sysOpenTime - dt.now()
     minNum = deltaTime.seconds
     while i >= 0 and result.find('Success') == -1:
         if deltaTime.days > 13 and minNum%3600//60 > 4:
@@ -33,7 +34,7 @@ def runFn():
             showText.insert(1.0, "The left time is: {:02d}h {:02d}m {:02d}s\n".format(minNum//3600, minNum%3600//60,minNum%60))
             showText.insert(END, "The program will run in 5 min left, now waiting~~~")
             showText.update()
-            deltaTime = stTime - dt.now()
+            deltaTime = sysOpenTime - dt.now()
             minNum = deltaTime.seconds
             continue
         # else:
