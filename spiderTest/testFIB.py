@@ -1,5 +1,6 @@
 from tkinter import *
 from datetime import datetime as dt
+from datetime import timedelta
 from FIB import book_FIB
 import time
 
@@ -70,7 +71,10 @@ if __name__ == '__main__':
     e1 = StringVar()
     stEntry = Entry(f1, width = 50, textvariable = e1)
     stEntry.pack(side = LEFT)
-    e1.set("2019-05-31 08:00")
+    now = dt.now()
+    temp = dt(now.year,now.month,now.day,8,0) + timedelta(days=15)
+    # e1.set("2019-05-31 08:00")
+    e1.set(temp.strftime('%Y-%m-%d %H:%M'))
     f1.pack()
 
     f2 = Frame(top)
@@ -78,7 +82,9 @@ if __name__ == '__main__':
     e1 = StringVar()
     edEntry = Entry(f2, width = 50, textvariable = e1)
     edEntry.pack(side = LEFT)
-    e1.set("2019-05-31 12:00")
+    temp = dt(now.year,now.month,now.day,12,0) + timedelta(days=15)
+    e1.set(temp.strftime('%Y-%m-%d %H:%M'))
+    # e1.set("2019-05-31 12:00")
     f2.pack()
 
     stTime = dt.strptime(stEntry.get(), '%Y-%m-%d %H:%M')
